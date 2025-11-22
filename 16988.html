@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Denim Collective - 顶级牛仔供应链整合</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS 基础设定与全局样式 */
+        :root {
+            --color-bg-dark: #0F0F0F; /* 沉稳的深黑背景 */
+            --color-text-light: #F0F0F0; /* 亮白色主文本 */
+            --color-highlight: #4682B4; /* 钢蓝/深海蓝 - 强调色，代表牛仔核心色 */
+            --color-secondary: #B0A080; /* 柔和古铜色 - 辅助强调色，代表奢华和细节 */
+            --color-line: #444444; /* 分隔线颜色 */
+            --font-main: 'Inter', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-main);
+            color: var(--color-text-light);
+            background-color: var(--color-bg-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            text-rendering: optimizeLegibility;
+        }
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 80px 5%;
+        }
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 标题和排版 */
+        .title-serif {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        h1 { 
+            font-size: 6rem; 
+            color: var(--color-text-light);
+            font-family: var(--font-serif);
+            letter-spacing: 5px;
+        }
+        h2 { 
+            font-size: 3.5rem; 
+            margin-bottom: 20px; 
+            color: var(--color-highlight); 
+            text-align: center;
+        }
+        h3 { 
+            font-size: 1.8rem; 
+            margin-bottom: 15px; 
+            color: var(--color-secondary);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        p {
+            font-weight: 300;
+            color: var(--color-text-light);
+            max-width: 900px;
+            margin: 0 auto 25px;
+        }
+
+        /* 导航和 Header */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.9);
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--color-line);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            color: var(--color-text-light);
+            letter-spacing: 3px;
+        }
+        nav a {
+            margin-left: 40px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        nav a:hover { color: var(--color-highlight); }
+        .lang-switch { color: var(--color-secondary); }
+
+        /* HERO SECTION */
+        #home {
+            background-color: var(--color-bg-dark);
+            text-align: center;
+            padding-top: 150px;
+        }
+        #hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.2; 
+        }
+        .hero-content {
+            z-index: 1;
+            position: relative;
+        }
+        .hero-statement {
+            font-size: 2.5rem;
+            font-family: var(--font-serif);
+            color: var(--color-secondary);
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+
+        /* VISION & CAPABILITIES SECTION (核心能力展示) */
+        #vision {
+            background-color: var(--color-module-bg);
+            text-align: center;
+        }
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-top: 50px;
+        }
+        .cap-item {
+            padding: 30px;
+            border: 1px solid var(--color-line);
+            transition: border-color 0.4s;
+        }
+        .cap-item:hover {
+            border-color: var(--color-highlight);
+        }
+        .cap-item h3 {
+            color: var(--color-highlight);
+            font-size: 1.5rem;
+        }
+        .cap-item p {
+            color: var(--color-line);
+            font-size: 0.9rem;
+            max-width: none;
+        }
+
+        /* VISUAL SHOWCASE SECTION (图片和细节展示) */
+        #showcase {
+            background-color: var(--color-bg-dark);
+            min-height: auto;
+            padding: 100px 5%;
+        }
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; 
+            gap: 30px;
+        }
+        .img-large {
+            grid-row: 1 / span 2; 
+            min-height: 800px;
+        }
+        .img-small {
+            min-height: 400px;
+        }
+        .visual-placeholder {
+            background-color: var(--color-module-bg);
+            border: 1px solid var(--color-line);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .visual-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.4s;
+        }
+        .visual-placeholder img:hover {
+            opacity: 1;
+        }
+        
+        /* CONTACT & CTA SECTION */
+        #contact {
+            background-color: var(--color-highlight); 
+            color: var(--color-text-light);
+            text-align: center;
+            min-height: 50vh;
+        }
+        #contact h2 {
+            color: var(--color-text-light); 
+            margin-bottom: 40px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 40px;
+        }
+        .contact-info a {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+        }
+        .btn-contact {
+            padding: 15px 60px;
+            background-color: var(--color-secondary);
+            color: var(--color-bg-dark);
+            border: 2px solid var(--color-secondary);
+        }
+        .btn-contact:hover {
+            background-color: var(--color-bg-dark);
+            color: var(--color-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #000;
+            color: var(--color-line);
+            font-size: 0.85rem;
+            border-top: 1px solid #111;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            h1 { font-size: 4rem; }
+            .hero-statement { font-size: 1.8rem; }
+            .capability-grid { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .img-large { min-height: 600px; }
+            .img-small { min-height: 300px; }
+            .contact-info { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container navbar">
+            <div class="logo title-serif">Prime Denim Collective</div>
+            <nav>
+                <a href="#home" data-lang="zh">首页</a><a href="#home" data-lang="en" style="display:none;">Home</a>
+                <a href="#vision" data-lang="zh">核心能力</a><a href="#vision" data-lang="en" style="display:none;">Core Capabilities</a>
+                <a href="#showcase" data-lang="zh">视觉展示</a><a href="#showcase" data-lang="en" style="display:none;">Visual Showcase</a>
+                <a href="#contact" data-lang="zh">联系我们</a><a href="#contact" data-lang="en" style="display:none;">Contact</a>
+                <span class="lang-switch title-serif" onclick="toggleLanguage()">EN / 中</span>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="section">
+        <video autoplay muted loop id="hero-video">
+            <source src="[YOUR_DENIM_FACTORY_VIDEO_URL.mp4]" type="video/mp4">
+            <!-- 替换了主视频区域的占位图 -->
+            <img src="https://img.zcool.cn/community/01f6a55c3e63e6a80121ab0296d5e8.jpg@1280w_1l_2o_100sh.jpg" alt="Denim Manufacturing Video">
+        </video>
+        <div class="hero-content">
+            <h1 data-lang="zh">Prime Denim Collective</h1><h1 data-lang="en" style="display:none;">Prime Denim Collective</h1>
+            <p class="hero-statement" data-lang="zh">高级牛仔。定制。全球集成。</p>
+            <p class="hero-statement" data-lang="en" style="display:none;">Premium Denim. Bespoke. Globally Integrated.</p>
+            
+            <a href="#vision" class="btn-primary btn-contact title-serif" data-lang="zh">深入了解平台</a>
+            <a href="#vision" class="btn-primary btn-contact title-serif" data-lang="en" style="display:none;">Explore Capabilities</a>
+        </div>
+    </section>
+
+    <section id="vision" class="section">
+        <div class="container">
+            <p class="subtitle" data-lang="zh">平台愿景</p><p class="subtitle" data-lang="en" style="display:none;">Our Vision</p>
+            <h2 data-lang="zh">顶级供应链的定义者</h2><h2 data-lang="en" style="display:none;">The Definitive Premium Supply Chain</h2>
+            
+            <p data-lang="zh">
+                Prime Denim Collective 是一个为全球高端时尚品牌设计的数字化整合平台。我们打破传统代工模式，将 **50+** 家经过严格认证的顶级牛仔制造商、面料供应商和水洗工厂连接至一个智能网络，确保您的产品在**工艺、可持续性**和**交期**上达到全球最高标准。
+            </p>
+            <p data-lang="en" style="display:none;">
+                Prime Denim Collective is a digital integration platform designed for global high-end fashion brands. We transcend traditional manufacturing models by connecting **50+** rigorously certified top denim manufacturers, fabric suppliers, and laundry facilities into one intelligent network, ensuring your products meet the world's highest standards in **craftsmanship, sustainability,** and **delivery time**.
+            </p>
+
+            <div class="capability-grid">
+                <div class="cap-item" data-lang="zh">
+                    <h3>01. 智能匹配系统</h3>
+                    <p>根据订单的复杂性、数量和目标市场，AI 精准匹配最优生产线，实现产能的极致优化。</p>
+                </div>
+                <div class="cap-item" data-lang="en" style="display:none;">
+                    <h3>01. Intelligent Matching System</h3>
+                    <p>AI precisely matches the optimal production line based on order complexity, volume, and target market, achieving ultimate capacity optimization.</p>
+                </div>
+
+                <div class="cap-item" data-lang="zh">
+                    <h3>02. 可持续化路径</h3>
+                    <p>优先使用有机棉、TENCEL™ 等环保面料，推行激光、臭氧等低水耗水洗技术，助力品牌实现碳中和目标。</p>
+                </div>
+                <div class="cap-item" data-lang="en" style="display:none;">
+                    <h3>02. Sustainable Pathways</h3>
+                    <p>Prioritizing eco-friendly fabrics like organic cotton and TENCEL™, and utilizing low-water consumption techniques such as laser and ozone washing to help brands achieve carbon neutrality.</p>
+                </div>
+
+                <div class="cap-item" data-lang="zh">
+                    <h3>03. 数字化品控</h3>
+                    <p>全程实时追踪，采用国际标准认证，从原纱到成品，每个节点皆有驻厂专家进行质量把控。</p>
+                </div>
+                <div class="cap-item" data-lang="en" style="display:none;">
+                    <h3>03. Digital Quality Control</h3>
+                    <p>Real-time, end-to-end tracking with international standard certification. On-site experts maintain quality control at every node from raw yarn to finished garment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="showcase" class="section">
+    <div class="container">
+        <p class="subtitle" data-lang="zh" style="text-align: center;">工艺与质感</p>
+        <p class="subtitle" data-lang="en" style="display:none; text-align: center;">Craftsmanship & Texture</p>
+        <h2 data-lang="zh">我们的精湛细节</h2>
+        <h2 data-lang="en" style="display:none;">Our Exquisite Detail</h2>
+
+        <div class="showcase-grid">
+            <!-- 大图：使用一张与制造、纺织相关的宏大场景 -->
+            <div class="visual-placeholder img-large">
+                <img src="C:\Users\hui\Desktop\GW\46c530bb00e6c02c414f82cb8fb3720a.jpg" alt="Modern Manufacturing Facility">
+            </div>
+            <!-- 小图1：特写，展示织物纹理或细节 -->
+            <div class="visual-placeholder img-small">
+                <img src="C:\Users\hui\Desktop\GW\35fd9c9f1d885fd2d94e173cda81c42a.jpg" alt="Close-up of Fabric Texture">
+            </div>
+            <!-- 小图2：展示成品或材料堆叠 -->
+            <div class="visual-placeholder img-small">
+                <img src="C:\Users\hui\Desktop\GW\1cfd953086dc3b1eec7e7cbcec7e30a1.jpg" alt="Stacked Denim Materials">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 data-lang="zh">为您的品牌定制非凡</h2><h2 data-lang="en" style="display:none;">Bespoke Excellence for Your Brand</h2>
+            <p data-lang="zh" style="color: var(--color-text-light); max-width: 700px;">
+                Prime Denim Collective 的专业团队已准备好协助您定义下一季的牛仔系列。立即联系，开启您的定制化供应链方案。
+            </p>
+            <p data-lang="en" style="display:none; color: var(--color-text-light); max-width: 700px;">
+                Prime Denim Collective's expert team is ready to help you define your next denim collection. Contact us now to begin your customized supply chain solution.
+            </p>
+
+            <div class="contact-info">
+                <p class="title-serif" data-lang="zh">
+                    <a href="mailto:huanghui7670125@outloo.com" style="color: var(--color-text-light);">
+                        邮箱: huanghui7670125@outloo.com
+                    </a>
+                </p>
+                <p class="title-serif" data-lang="en" style="display:none;">
+                    <a href="mailto:huanghui7670125@outloo.com" style="color: var(--color-text-light);">
+                        EMAIL: huanghui7670125@outloo.com
+                    </a>
+                </p>
+                <p class="title-serif" data-lang="zh">
+                    <a href="tel:+8615201916401" style="color: var(--color-text-light);">
+                        WHATSAPP: +86 15201916401
+                    </a>
+                </p>
+                <p class="title-serif" data-lang="en" style="display:none;">
+                    <a href="tel:+8615201916401" style="color: var(--color-text-light);">
+                        WHATSAPP: +86 15201916401
+                    </a>
+                </p>
+            </div>
+            
+            <a href="mailto:huanghui7670125@outloo.com" class="btn-primary btn-contact title-serif" data-lang="zh">开始您的项目</a>
+            <a href="mailto:huanghui7670125@outloo.com" class="btn-primary btn-contact title-serif" data-lang="en" style="display:none;">Start Your Project</a>
+        </div>
+    </section>
+
+    <footer>
+        <p data-lang="zh">&copy; 2025 Prime Denim Collective. All Rights Reserved. | 顶级供应链集成平台</p>
+        <p data-lang="en" style="display:none;">&copy; 2025 Prime Denim Collective. All Rights Reserved. | Premium Supply Chain Integration Platform</p>
+    </footer>
+
+    <script>
+        let currentLang = 'zh';
+
+        function updateContentVisibility() {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = 'none';
+            });
+
+            document.querySelectorAll(`[data-lang="${currentLang}"]`).forEach(el => {
+                if (el.tagName === 'A' || el.tagName === 'SPAN') {
+                    el.style.display = 'inline-block';
+                } else if (el.classList.contains('capability-grid') || el.classList.contains('showcase-grid')) {
+                    el.style.display = 'grid'; 
+                } else if (el.classList.contains('contact-info')) {
+                    el.style.display = 'flex'; 
+                } else {
+                    el.style.display = 'block';
+                }
+            });
+
+            document.documentElement.lang = currentLang;
+            const langSwitch = document.querySelector('.lang-switch');
+            langSwitch.textContent = currentLang === 'zh' ? 'EN / 中' : '中 / EN';
+            
+            document.title = currentLang === 'zh' 
+                ? 'Prime Denim Collective - 顶级牛仔供应链整合' 
+                : 'Prime Denim Collective - Premium Denim Supply Chain Integration';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateContentVisibility();
+        }
+
+        document.addEventListener('DOMContentLoaded', updateContentVisibility);
+    </script>
+
+</body>
+</html>
